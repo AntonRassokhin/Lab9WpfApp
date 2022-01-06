@@ -1,0 +1,67 @@
+﻿<Window x:Class="Lab8WpfApp_hw.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab8WpfApp_hw"      
+        mc:Ignorable="d"
+        Title="Текстовый редактор 5.0" Height="450" Width="800" MinWidth="700" Style="{DynamicResource WindowStyle}">
+   
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" Executed="CloseExecuted" />
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="Help" Executed="HelpExecuted"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="styleBox" Grid.Row="0"/>
+        <Menu Margin="5" Padding="5" Grid.Row="1" Style="{DynamicResource MenuStyle}">
+            <MenuItem Header="_Файл" Style="{DynamicResource MenuItemStyle}">
+                <MenuItem Header="_Открыть" Command="Open" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Header="_Сохранить" Command="Save" Style="{DynamicResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="_Выход" Command="Close" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_Правка" Style="{DynamicResource MenuItemStyle}">
+                <MenuItem Header="_Копировать" Command="Copy" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Header="_Вставить" Command="Paste" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Header="_Вырезать" Command="Cut" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Command="Help" Style="{DynamicResource MenuItemStyle}" />
+        </Menu>
+        <ToolBarTray Grid.Row="2" Style="{DynamicResource WindowStyle}">
+            <ToolBar Margin="5" Padding="3" Style="{DynamicResource ToolBarStyle}">
+                <ComboBox Margin="5" Padding="3" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource listFontName}" Style="{DynamicResource ComboBoxStyle}"/>
+                <ComboBox Margin="5" Padding="3" SelectedIndex="2" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource listFontSize}" Style="{DynamicResource ComboBoxStyle}"/>
+            </ToolBar>
+            <ToolBar Margin="5" Padding="3" Style="{DynamicResource ToolBarStyle}">
+                <Button Click="Button_Click" Style="{DynamicResource ButtonStyle}">
+                    <Image Source="Data/BOLD.png" Width="45"/>
+                </Button>
+                <Separator/>
+                <Button Click="Button_Click_1" Style="{DynamicResource ButtonStyle}">
+                    <Image Source="Data/ITALIC.png" Width="45"/>
+                </Button>
+                <Separator/>
+                <Button Click="Button_Click_2" Style="{DynamicResource ButtonStyle}">
+                    <Image Source="Data/Underline.png" Width="45"/>
+                </Button>
+                <Separator/>
+            </ToolBar>
+            <ToolBar Margin="5" Padding="3" Style="{DynamicResource ToolBarStyle}">
+                <StackPanel VerticalAlignment="Center">
+                    <RadioButton Content="Черный" IsChecked="True" Click="BlackRadioButton_Click" Style="{DynamicResource RadioButtonStyle}"/>
+                    <RadioButton Content="Зеленый" Click="GreenRadioButton_Click" Style="{DynamicResource RadioButtonStyle}"/>
+                    <RadioButton Content="Красный" Click="RedRadioButton_Click" Style="{DynamicResource RadioButtonStyle}"/>
+                </StackPanel>
+            </ToolBar>
+        </ToolBarTray>
+        <TextBox x:Name="text" Grid.Row="3" Margin="5" Padding="3" TextWrapping="Wrap" Language="ru" SpellCheck.IsEnabled="True" FontSize="16" FontFamily="Arial" Style="{DynamicResource TextBoxStyle}"/>
+    </Grid>
+</Window>
